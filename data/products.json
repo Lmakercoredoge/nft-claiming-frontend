@@ -1,0 +1,135 @@
+{
+  "products": [
+    {
+      "id": "hoodie-black-001",
+      "name": "MONGMONG Classic Hoodie - Black",
+      "category": "hoodie",
+      "description": "Premium quality hoodie with embroidered MONGMONG logo. Made from 100% organic cotton.",
+      "price": 5000,
+      "currency": "MONGMONG",
+      "images": [
+        "/images/products/hoodie-black-1.jpg",
+        "/images/products/hoodie-black-2.jpg"
+      ],
+      "sizes": ["S", "M", "L", "XL", "2XL"],
+      "colors": ["black"],
+      "stock": {
+        "S": 10,
+        "M": 15,
+        "L": 20,
+        "XL": 12,
+        "2XL": 8
+      },
+      "nftHolderDiscount": 20,
+      "featured": true,
+      "tags": ["clothing", "hoodie", "premium", "bestseller"]
+    },
+    {
+      "id": "hoodie-white-001",
+      "name": "MONGMONG Classic Hoodie - White",
+      "category": "hoodie",
+      "description": "Premium quality hoodie with embroidered MONGMONG logo. Made from 100% organic cotton.",
+      "price": 5000,
+      "currency": "MONGMONG",
+      "images": [
+        "/images/products/hoodie-white-1.jpg",
+        "/images/products/hoodie-white-2.jpg"
+      ],
+      "sizes": ["S", "M", "L", "XL", "2XL"],
+      "colors": ["white"],
+      "stock": {
+        "S": 8,
+        "M": 12,
+        "L": 18,
+        "XL": 10,
+        "2XL": 5
+      },
+      "nftHolderDiscount": 20,
+      "featured": true,
+      "tags": ["clothing", "hoodie", "premium"]
+    },
+    {
+      "id": "tshirt-black-001",
+      "name": "MONGMONG Essential Tee - Black",
+      "category": "tshirt",
+      "description": "Comfortable everyday tee with MONGMONG print. Soft and breathable fabric.",
+      "price": 2500,
+      "currency": "MONGMONG",
+      "images": [
+        "/images/products/tshirt-black-1.jpg",
+        "/images/products/tshirt-black-2.jpg"
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "colors": ["black"],
+      "stock": {
+        "S": 20,
+        "M": 25,
+        "L": 30,
+        "XL": 15
+      },
+      "nftHolderDiscount": 15,
+      "featured": false,
+      "tags": ["clothing", "tshirt", "essential"]
+    },
+    {
+      "id": "cap-black-001",
+      "name": "MONGMONG Snapback Cap - Black",
+      "category": "accessories",
+      "description": "Adjustable snapback cap with embroidered MONGMONG logo. One size fits all.",
+      "price": 1500,
+      "currency": "MONGMONG",
+      "images": [
+        "/images/products/cap-black-1.jpg"
+      ],
+      "sizes": ["ONE SIZE"],
+      "colors": ["black"],
+      "stock": {
+        "ONE SIZE": 50
+      },
+      "nftHolderDiscount": 10,
+      "featured": false,
+      "tags": ["accessories", "cap", "streetwear"]
+    },
+    {
+      "id": "bag-001",
+      "name": "MONGMONG Tote Bag",
+      "category": "accessories",
+      "description": "Durable canvas tote bag with MONGMONG print. Perfect for daily use.",
+      "price": 2000,
+      "currency": "MONGMONG",
+      "images": [
+        "/images/products/bag-1.jpg"
+      ],
+      "sizes": ["ONE SIZE"],
+      "colors": ["beige"],
+      "stock": {
+        "ONE SIZE": 30
+      },
+      "nftHolderDiscount": 15,
+      "featured": true,
+      "tags": ["accessories", "bag", "eco-friendly"]
+    },
+    {
+      "id": "hoodie-limited-001",
+      "name": "MONGMONG Limited Edition Hoodie - Neon",
+      "category": "hoodie",
+      "description": "Limited edition hoodie with neon MONGMONG design. Only 100 pieces available!",
+      "price": 8000,
+      "currency": "MONGMONG",
+      "images": [
+        "/images/products/hoodie-neon-1.jpg",
+        "/images/products/hoodie-neon-2.jpg"
+      ],
+      "sizes": ["M", "L", "XL"],
+      "colors": ["black-neon"],
+      "stock": {
+        "M": 30,
+        "L": 40,
+        "XL": 30
+      },
+      "nftHolderDiscount": 30,
+      "featured": true,
+      "tags": ["clothing", "hoodie", "limited", "exclusive"]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "claims": [],
+  "whitelist": [
+    {
+      "address": "8x6XSbtpJ38TYSRU63GmWWJBn75fPVqxs4saxm3uRNs2",
+      "note": "",
+      "added_at": "2025-10-22T12:58:24.761Z"
+    }
+  ],
+  "nftCollections": [],
+  "settings": {
+    "claimAmountPerNFT": 50000,
+    "maxClaimAmount": 1000,
+    "cooldownHours": 24,
+    "enabled": true
+  }
+}
