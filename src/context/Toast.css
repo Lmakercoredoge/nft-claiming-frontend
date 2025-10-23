@@ -1,0 +1,136 @@
+/* Toast Container */
+.toast-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+/* Toast */
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 2px solid;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  min-width: 300px;
+  max-width: 400px;
+  pointer-events: auto;
+  animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* Toast Types */
+.toast-success {
+  border-color: #00ff88;
+  box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+}
+
+.toast-error {
+  border-color: #ff4444;
+  box-shadow: 0 10px 30px rgba(255, 68, 68, 0.3);
+}
+
+.toast-warning {
+  border-color: #ffaa00;
+  box-shadow: 0 10px 30px rgba(255, 170, 0, 0.3);
+}
+
+.toast-info {
+  border-color: #00bfff;
+  box-shadow: 0 10px 30px rgba(0, 191, 255, 0.3);
+}
+
+.toast-loading {
+  border-color: #00ffff;
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+}
+
+/* Toast Icon */
+.toast-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.toast-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(0, 255, 255, 0.2);
+  border-top-color: #00ffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Toast Message */
+.toast-message {
+  flex: 1;
+  color: white;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Close Button */
+.toast-close {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.toast-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .toast-container {
+    top: auto;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+  }
+
+  .toast {
+    min-width: auto;
+    max-width: 100%;
+  }
+}

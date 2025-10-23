@@ -1,0 +1,285 @@
+/* Marketplace Page */
+.marketplace {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.marketplace-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.marketplace-header h1 {
+  color: #00ffff;
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+.marketplace-header p {
+  color: #888;
+  font-size: 1.1rem;
+}
+
+/* Controls */
+.marketplace-controls {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.search-bar {
+  flex: 1;
+  min-width: 250px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: #00ffff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filter-buttons button {
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 8px;
+  color: #888;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-buttons button:hover {
+  border-color: rgba(0, 255, 255, 0.6);
+  color: #00ffff;
+}
+
+.filter-buttons button.active {
+  background: rgba(0, 255, 255, 0.2);
+  border-color: #00ffff;
+  color: #00ffff;
+}
+
+/* NFT Grid */
+.nft-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* NFT Card */
+.nft-card {
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(22, 33, 62, 0.8) 100%);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nft-card:hover {
+  transform: translateY(-8px);
+  border-color: #00ffff;
+  box-shadow: 0 10px 40px rgba(0, 255, 255, 0.4);
+}
+
+.nft-image {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.nft-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.nft-card:hover .nft-image img {
+  transform: scale(1.1);
+}
+
+.nft-info {
+  padding: 1.5rem;
+}
+
+.nft-info h3 {
+  color: #00ffff;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.nft-mint {
+  color: #888;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  margin: 0 0 1rem 0;
+}
+
+.nft-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background: rgba(0, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.price-label {
+  color: #888;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.price-value {
+  color: #00ff88;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.nft-seller {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.75rem 0 1.5rem 0;
+  padding: 0.5rem 0;
+  border-top: 1px solid rgba(0, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.seller-label {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.seller-address {
+  color: #00ffff;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+}
+
+.buy-button {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 2px solid #00ffff;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.buy-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 255, 255, 0.4);
+}
+
+.buy-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Loading State */
+.loading-state {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(0, 255, 255, 0.2);
+  border-top-color: #00ffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px dashed rgba(0, 255, 255, 0.2);
+  border-radius: 16px;
+}
+
+.empty-icon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  opacity: 0.3;
+}
+
+.empty-state h3 {
+  color: #00ffff;
+  margin: 0 0 0.5rem 0;
+}
+
+.empty-state p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .marketplace {
+    padding: 1rem;
+  }
+
+  .marketplace-header h1 {
+    font-size: 2rem;
+  }
+
+  .marketplace-controls {
+    flex-direction: column;
+  }
+
+  .nft-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+}

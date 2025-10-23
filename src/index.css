@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+
+:root {
+  font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: #ffffff;
+  background: #000000;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* iOS Safari 호환성 */
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #000000;
+  overflow-x: hidden;
+  font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+  
+  /* 모바일 스크롤 개선 */
+  -webkit-overflow-scrolling: touch;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  background: #000000; /* 백업 배경색 */
+}
+
+/* Neon text glow */
+.neon-text {
+  text-shadow: 
+    0 0 10px rgba(0, 255, 255, 0.8),
+    0 0 20px rgba(0, 255, 255, 0.6),
+    0 0 30px rgba(0, 255, 255, 0.4),
+    0 0 40px rgba(255, 0, 255, 0.4);
+}
+
+.neon-pink {
+  text-shadow: 
+    0 0 10px rgba(255, 0, 255, 0.8),
+    0 0 20px rgba(255, 0, 255, 0.6),
+    0 0 30px rgba(255, 0, 255, 0.4);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00ffff 0%, #ff00ff 100%);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00ffff 0%, #ff00ff 100%);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}

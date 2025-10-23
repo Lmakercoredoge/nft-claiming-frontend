@@ -1,0 +1,327 @@
+.wallet-connect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  padding: 2rem;
+  background: transparent;
+  position: relative;
+  overflow: visible;
+  width: 100%;
+  z-index: 10;
+}
+
+.wallet-connect > * {
+  position: relative;
+  z-index: 10;
+}
+
+/* 모바일 가이드 박스 */
+.mobile-guide {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 1rem;
+  z-index: 1;
+}
+
+.guide-box {
+  background: rgba(0, 255, 255, 0.05);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  padding: 1.5rem;
+  border-radius: 0;
+  clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+  box-shadow: 
+    0 0 20px rgba(0, 255, 255, 0.2),
+    inset 0 0 20px rgba(0, 255, 255, 0.05);
+}
+
+.guide-title {
+  color: #00ffff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 1rem 0;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.guide-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  counter-reset: step-counter;
+}
+
+.guide-steps li {
+  counter-increment: step-counter;
+  color: #ffffff;
+  font-size: 0.9rem;
+  margin: 0.7rem 0;
+  padding-left: 2rem;
+  position: relative;
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.5;
+}
+
+.guide-steps li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: linear-gradient(135deg, #00ffff, #ff00ff);
+  color: #000000;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.guide-steps li strong {
+  color: #ff00ff;
+  text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+}
+
+.guide-warning {
+  color: #ff00ff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 1rem 0 0 0;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
+  font-family: 'JetBrains Mono', monospace;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* 모바일 다운로드 안내 */
+.mobile-instructions {
+  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(0, 255, 255, 0.05);
+  border-radius: 8px;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  z-index: 1;
+}
+
+.mobile-instructions p {
+  margin: 0 0 0.5rem 0;
+  color: #00ffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.download-link {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  margin-top: 0.5rem;
+  background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+  color: #000000;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-family: 'JetBrains Mono', monospace;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+}
+
+.download-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+/* Override wallet adapter button styles */
+.wallet-connect .wallet-adapter-button {
+  background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 1rem 2.5rem !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.2em !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  box-shadow: 
+    0 0 20px rgba(0, 255, 255, 0.5),
+    0 0 40px rgba(255, 0, 255, 0.3) !important;
+  transition: all 0.3s ease !important;
+  position: relative;
+  overflow: visible !important;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  z-index: 100 !important;
+}
+
+/* Wallet Adapter Dropdown 스타일 - 드롭다운이 보이도록 */
+.wallet-adapter-dropdown {
+  position: relative !important;
+  z-index: 1000 !important;
+}
+
+.wallet-adapter-dropdown-list {
+  position: absolute !important;
+  z-index: 1001 !important;
+  background: rgba(10, 10, 30, 0.98) !important;
+  border: 2px solid #00ffff !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 40px rgba(0, 255, 255, 0.4) !important;
+  margin-top: 0.5rem !important;
+  padding: 0.5rem !important;
+  min-width: 200px !important;
+  backdrop-filter: blur(10px) !important;
+  pointer-events: auto !important;
+}
+
+.wallet-adapter-dropdown-list-item {
+  padding: 0.75rem 1rem !important;
+  color: #00ffff !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border-radius: 4px !important;
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+.wallet-adapter-dropdown-list-item:hover {
+  background: rgba(0, 255, 255, 0.1) !important;
+  color: #ff00ff !important;
+}
+
+/* Wallet Modal z-index */
+.wallet-adapter-modal-wrapper {
+  z-index: 9999 !important;
+}
+
+.wallet-adapter-modal {
+  z-index: 10000 !important;
+}
+
+.wallet-connect .wallet-adapter-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+  z-index: -1;
+}
+
+.wallet-connect .wallet-adapter-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.wallet-connect .wallet-adapter-button:hover {
+  transform: translateY(-3px) scale(1.05) !important;
+  box-shadow: 
+    0 0 30px rgba(0, 255, 255, 0.8),
+    0 0 60px rgba(255, 0, 255, 0.5) !important;
+}
+
+.wallet-connect .wallet-adapter-button:active {
+  transform: translateY(-1px) scale(1.02) !important;
+}
+
+.wallet-info {
+  padding: 1.5rem 2rem;
+  background: transparent;
+  margin-top: 1rem;
+  text-align: center;
+  z-index: 1;
+}
+
+.wallet-info p {
+  margin: 0 0 0.8rem 0;
+  font-size: 0.9rem;
+  color: #00ffff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.wallet-info code {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.8rem 1.5rem;
+  border-radius: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  color: #ff00ff;
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.2);
+  text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+  display: inline-block;
+  clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
+}
+
+/* Compact mode */
+.wallet-connect-compact {
+  z-index: 1000;
+  position: relative;
+}
+
+.wallet-connect-compact .wallet-adapter-button {
+  z-index: 1000 !important;
+}
+
+@media (max-width: 768px) {
+  .wallet-connect {
+    padding: 1.5rem;
+  }
+  
+  .guide-box {
+    padding: 1rem;
+  }
+  
+  .guide-title {
+    font-size: 0.9rem;
+  }
+  
+  .guide-steps li {
+    font-size: 0.85rem;
+    padding-left: 1.8rem;
+  }
+  
+  .guide-steps li::before {
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+  }
+  
+  .guide-warning {
+    font-size: 0.8rem;
+  }
+  
+  .wallet-connect .wallet-adapter-button {
+    padding: 0.8rem 2rem !important;
+    font-size: 1rem !important;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .wallet-info code {
+    font-size: 0.85rem;
+    padding: 0.6rem 1rem;
+  }
+}

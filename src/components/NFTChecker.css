@@ -1,0 +1,190 @@
+.nft-checker {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.nft-checker h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  background: linear-gradient(45deg, #00ffff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+.loading, .error-message, .no-nfts, .no-wallet {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2em;
+  color: #00ffff;
+}
+
+.error-message {
+  background: rgba(255, 68, 68, 0.1);
+  border: 2px solid rgba(255, 68, 68, 0.5);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 1rem 0;
+}
+
+.error-message .error {
+  color: #ff6b6b;
+  font-size: 1em;
+  white-space: pre-line;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.retry-button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.retry-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 255, 255, 0.4);
+}
+
+/* 클레임 가능 여부 표시 */
+.eligibility-warning {
+  margin: 20px 0;
+  padding: 15px;
+  background: rgba(255, 68, 68, 0.2);
+  border: 2px solid #ff4444;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.warning-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #ff4444;
+  margin-bottom: 5px;
+}
+
+.warning-message {
+  color: #ffaaaa;
+  font-size: 1.1em;
+}
+
+.eligibility-success {
+  margin: 20px 0;
+  padding: 15px;
+  background: rgba(34, 197, 94, 0.2);
+  border: 2px solid #22c55e;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.success-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #22c55e;
+  margin-bottom: 5px;
+}
+
+.success-message {
+  color: #a0f0a0;
+  font-size: 1.1em;
+}
+
+.nft-list {
+  margin-top: 20px;
+}
+
+.nft-count {
+  font-size: 1.3em;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.nft-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.nft-item {
+  position: relative;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.nft-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #00ffff;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0, 255, 255, 0.3);
+}
+
+.nft-item.valid {
+  border-color: #22c55e;
+}
+
+.nft-item.invalid {
+  opacity: 0.5;
+  border-color: #ff4444;
+}
+
+.nft-name {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: white;
+  font-size: 0.9em;
+}
+
+.nft-mint {
+  display: block;
+  font-size: 0.8em;
+  color: #888;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+
+.valid-badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #22c55e;
+  color: white;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .nft-checker {
+    padding: 20px;
+  }
+
+  .nft-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}

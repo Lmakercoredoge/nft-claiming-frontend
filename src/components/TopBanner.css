@@ -1,0 +1,223 @@
+.top-banner {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.banner-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 400px;
+  overflow: hidden;
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 
+    0 0 40px rgba(0, 255, 255, 0.3),
+    0 0 80px rgba(255, 0, 255, 0.2),
+    inset 0 0 40px rgba(0, 255, 255, 0.05);
+}
+
+.banner-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.banner-slide {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.banner-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* contain으로 변경 - 이미지 전체가 보이도록 */
+  object-position: center;
+  max-height: 500px;
+}
+
+/* 이전/다음 버튼 */
+.banner-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 255, 255, 0.2);
+  border: 2px solid rgba(0, 255, 255, 0.5);
+  color: #00ffff;
+  width: 60px;
+  height: 60px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  font-family: 'JetBrains Mono', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.banner-btn:hover {
+  background: rgba(0, 255, 255, 0.4);
+  border-color: rgba(0, 255, 255, 0.8);
+  box-shadow: 
+    0 0 20px rgba(0, 255, 255, 0.6),
+    inset 0 0 20px rgba(0, 255, 255, 0.2);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.banner-btn-prev {
+  left: 2rem;
+}
+
+.banner-btn-next {
+  right: 2rem;
+}
+
+/* 인디케이터 (점) */
+.banner-indicators {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  backdrop-filter: blur(5px);
+}
+
+.indicator:hover {
+  border-color: rgba(0, 255, 255, 0.8);
+  background: rgba(0, 255, 255, 0.3);
+  transform: scale(1.2);
+}
+
+.indicator.active {
+  background: linear-gradient(135deg, #00ffff, #ff00ff);
+  border-color: rgba(255, 0, 255, 0.8);
+  box-shadow: 
+    0 0 10px rgba(0, 255, 255, 0.6),
+    0 0 20px rgba(255, 0, 255, 0.4);
+  transform: scale(1.3);
+}
+
+/* 네온 애니메이션 */
+@keyframes border-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 40px rgba(0, 255, 255, 0.3),
+      0 0 80px rgba(255, 0, 255, 0.2),
+      inset 0 0 40px rgba(0, 255, 255, 0.05);
+  }
+  50% {
+    box-shadow: 
+      0 0 60px rgba(0, 255, 255, 0.5),
+      0 0 120px rgba(255, 0, 255, 0.3),
+      inset 0 0 60px rgba(0, 255, 255, 0.1);
+  }
+}
+
+.banner-container {
+  animation: border-pulse 3s ease-in-out infinite;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 1024px) {
+  .banner-container {
+    min-height: 300px;
+  }
+  
+  .banner-slide img {
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner-container {
+    min-height: 250px;
+  }
+  
+  .banner-slide img {
+    max-height: 300px;
+  }
+  
+  .banner-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 1.8rem;
+  }
+  
+  .banner-btn-prev {
+    left: 1rem;
+  }
+  
+  .banner-btn-next {
+    right: 1rem;
+  }
+  
+  .indicator {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .banner-indicators {
+    gap: 0.7rem;
+    bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-container {
+    min-height: 200px;
+  }
+  
+  .banner-slide img {
+    max-height: 250px;
+  }
+  
+  .banner-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+  }
+  
+  .banner-btn-prev {
+    left: 0.5rem;
+  }
+  
+  .banner-btn-next {
+    right: 0.5rem;
+  }
+  
+  .indicator {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .banner-indicators {
+    gap: 0.5rem;
+    bottom: 0.5rem;
+  }
+}
