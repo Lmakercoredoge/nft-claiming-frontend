@@ -11,9 +11,10 @@ console.log('📂 DB file:', DB_FILE);
 const DEFAULT_DB = {
   claims: [],
   settings: {
-    claimAmountPerNFT: 100,
-    maxClaimAmount: 1000,
+    claimAmountPerNFT: 50000,
+    maxClaimAmount: 500000,
     cooldownHours: 24,
+    maxClaimableNFTs: 10,
     enabled: true,
   },
   whitelist: [],

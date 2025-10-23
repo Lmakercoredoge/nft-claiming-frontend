@@ -54,9 +54,6 @@ try {
 const TOKEN_MINT = new PublicKey(process.env.TOKEN_MINT_ADDRESS);
 const TOKEN_DECIMALS = 8;
 
-// 클레임 쿨다운 (24시간)
-const CLAIM_COOLDOWN = 24 * 60 * 60 * 1000;
-
 /**
  * 헬스 체크
  */
@@ -112,14 +109,18 @@ app.post('/api/check-claim', async (req, res) => {
       return res.status(400).json({ error: '지갑 주소가 필요합니다' });
     }
     
+    // 설정 가져오기
+    const settings = await db.getSettings();
+    const cooldownMs = settings.cooldownHours * 60 * 60 * 1000;
+    
     // DB에서 마지막 클레임 확인
     const lastClaim = await db.getLastClaim(walletAddress);
     const now = Date.now();
     
     if (lastClaim) {
       const timeSinceLastClaim = now - lastClaim.timestamp;
-      const canClaim = timeSinceLastClaim >= CLAIM_COOLDOWN;
-      const timeRemaining = canClaim ? 0 : CLAIM_COOLDOWN - timeSinceLastClaim;
+      const canClaim = timeSinceLastClaim >= cooldownMs;
+      const timeRemaining = canClaim ? 0 : cooldownMs - timeSinceLastClaim;
       
       return res.json({
         canClaim,
@@ -151,19 +152,28 @@ app.post('/api/claim', async (req, res) => {
     
     console.log('🎯 클레임 요청:', { walletAddress, nftCount: nftMints?.length, amount });
     
+    // ✅ DB에서 설정 가져오기
+    const settings = await db.getSettings();
+    
+    // ✅ 클레임 비활성화 체크
+    if (!settings.enabled) {
+      return res.status(403).json({ error: '현재 클레임이 비활성화되어 있습니다' });
+    }
+    
     // 입력 검증
     if (!walletAddress || !nftMints || !amount) {
       return res.status(400).json({ error: '필수 정보가 누락되었습니다' });
     }
     
-    // DB에서 쿨다운 체크
+    // ✅ DB에서 쿨다운 체크 (설정값 사용)
     const lastClaim = await db.getLastClaim(walletAddress);
     const now = Date.now();
+    const cooldownMs = settings.cooldownHours * 60 * 60 * 1000;
     
     if (lastClaim) {
       const timeSinceLastClaim = now - lastClaim.timestamp;
-      if (timeSinceLastClaim < CLAIM_COOLDOWN) {
-        const timeRemaining = CLAIM_COOLDOWN - timeSinceLastClaim;
+      if (timeSinceLastClaim < cooldownMs) {
+        const timeRemaining = cooldownMs - timeSinceLastClaim;
         const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
         const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
         
@@ -177,6 +187,27 @@ app.post('/api/claim', async (req, res) => {
     // NFT 검증
     if (!Array.isArray(nftMints) || nftMints.length === 0) {
       return res.status(400).json({ error: 'NFT를 보유하고 있지 않습니다' });
+    }
+    
+    // ✅ 클레임 금액 검증 (설정값 사용)
+    const maxClaimableNFTs = settings.maxClaimableNFTs || 10;
+    const claimableNFTCount = Math.min(nftMints.length, maxClaimableNFTs);
+    const expectedAmount = claimableNFTCount * settings.claimAmountPerNFT;
+    
+    if (amount !== expectedAmount) {
+      return res.status(400).json({ 
+        error: '클레임 금액이 올바르지 않습니다',
+        expected: expectedAmount,
+        received: amount
+      });
+    }
+    
+    if (amount > settings.maxClaimAmount) {
+      return res.status(400).json({ 
+        error: '최대 클레임 금액을 초과했습니다',
+        max: settings.maxClaimAmount,
+        received: amount
+      });
     }
     
     // 토큰 전송

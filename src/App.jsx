@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { WalletContextProvider } from './context/WalletContextProvider';
 import { CartProvider } from './context/CartContext';
@@ -9,11 +9,10 @@ import NFTChecker from './components/NFTChecker';
 import ClaimButton from './components/ClaimButton';
 import Cart from './components/shop/Cart';
 import CartButton from './components/shop/CartButton';
-import Shop from './pages/Shop';
+import WearableShop from './pages/WearableShop';
+import NFTMarketplace from './pages/NFTMarketplace';
 import UserProfile from './pages/UserProfile';
-import AdminDashboard from './pages/AdminDashboard';
-import NFTGallery from './components/NFTGallery';
-import { UI_CONFIG, calculateClaimAmount } from './config/claimConfig';
+import { UI_CONFIG, calculateClaimAmount, loadConfigFromAPI } from './config/claimConfig';
 import './App.css';
 
 // Home 페이지 (기존 클레임 페이지)
@@ -150,15 +149,15 @@ function Navigation() {
             to="/shop" 
             className={`nav-link ${location.pathname === '/shop' ? 'active' : ''}`}
           >
-            <span className="nav-icon">🛍️</span>
-            <span>SHOP</span>
+            <span className="nav-icon">👕</span>
+            <span>WEARABLE</span>
           </Link>
           <Link 
             to="/gallery" 
             className={`nav-link ${location.pathname === '/gallery' ? 'active' : ''}`}
           >
-            <span className="nav-icon">🎨</span>
-            <span>GALLERY</span>
+            <span className="nav-icon">🖼️</span>
+            <span>NFT</span>
           </Link>
           <Link 
             to="/profile" 
@@ -166,13 +165,6 @@ function Navigation() {
           >
             <span className="nav-icon">👤</span>
             <span>PROFILE</span>
-          </Link>
-          <Link 
-            to="/admin" 
-            className={`nav-link ${location.pathname === '/admin' ? 'active' : ''}`}
-          >
-            <span className="nav-icon">📊</span>
-            <span>ADMIN</span>
           </Link>
         </div>
         <div className="nav-wallet">
@@ -188,6 +180,54 @@ function App() {
   const [claimAmount, setClaimAmount] = useState(100);
   const [imageError, setImageError] = useState(false);
   const [eligibility, setEligibility] = useState(null);
+  const [configLoaded, setConfigLoaded] = useState(false);
+  
+  // 앱 시작 시 설정 로드
+  useEffect(() => {
+    console.log('🚀 App starting, loading configuration...');
+    loadConfigFromAPI().then((result) => {
+      setConfigLoaded(true);
+      if (result.success) {
+        console.log('✅ Configuration loaded successfully');
+      } else {
+        console.warn('⚠️ Using default configuration');
+      }
+    });
+  }, []);
+  
+  // 설정 로드 중일 때 로딩 표시
+  if (!configLoaded) {
+    return (
+      <div className="App" style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+      }}>
+        <div style={{
+          textAlign: 'center',
+          color: 'white'
+        }}>
+          <div style={{
+            fontSize: '48px',
+            marginBottom: '20px',
+            animation: 'spin 2s linear infinite'
+          }}>
+            🐵
+          </div>
+          <h2>로딩 중...</h2>
+          <p>설정을 불러오고 있습니다</p>
+        </div>
+        <style>{`
+          @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+        `}</style>
+      </div>
+    );
+  }
 
   return (
     <WalletContextProvider>
@@ -214,10 +254,9 @@ function App() {
                     />
                   } 
                 />
-                <Route path="/shop" element={<Shop />} />
-                <Route path="/gallery" element={<NFTGallery />} />
+                <Route path="/shop" element={<WearableShop />} />
+                <Route path="/gallery" element={<NFTMarketplace />} />
                 <Route path="/profile" element={<UserProfile />} />
-                <Route path="/admin" element={<AdminDashboard />} />
               </Routes>
 
               {/* 전역 장바구니 */}

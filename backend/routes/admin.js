@@ -24,6 +24,38 @@ router.post('/login', (req, res) => {
   }
 });
 
+// ===== 설정 =====
+router.get('/settings', async (req, res) => {
+  try {
+    const settings = await db.getSettings();
+    res.json({ success: true, settings });
+  } catch (error) {
+    console.error('❌ Settings get error:', error);
+    res.status(500).json({ error: '서버 오류가 발생했습니다' });
+  }
+});
+
+router.put('/settings', async (req, res) => {
+  try {
+    const { enabled, claimAmountPerNFT, maxClaimAmount, cooldownHours, maxClaimableNFTs } = req.body;
+    
+    const updateData = {};
+    if (enabled !== undefined) updateData.enabled = enabled;
+    if (claimAmountPerNFT !== undefined) updateData.claimAmountPerNFT = claimAmountPerNFT;
+    if (maxClaimAmount !== undefined) updateData.maxClaimAmount = maxClaimAmount;
+    if (cooldownHours !== undefined) updateData.cooldownHours = cooldownHours;
+    if (maxClaimableNFTs !== undefined) updateData.maxClaimableNFTs = maxClaimableNFTs;
+    
+    const settings = await db.updateSettings(updateData);
+    
+    console.log('✅ Settings updated:', settings);
+    res.json({ success: true, settings });
+  } catch (error) {
+    console.error('❌ Settings update error:', error);
+    res.status(500).json({ error: '서버 오류가 발생했습니다' });
+  }
+});
+
 // ===== 통계 =====
 router.get('/stats', async (req, res) => {
   try {
@@ -100,6 +132,26 @@ router.post('/nft-collections', async (req, res) => {
     res.json({ success: true, collections });
   } catch (error) {
     res.status(400).json({ error: error.message });
+  }
+});
+
+router.patch('/nft-collections/:hash/toggle', async (req, res) => {
+  try {
+    const { hash } = req.params;
+    const collections = await db.toggleNFTCollection(hash);
+    res.json({ success: true, collections });
+  } catch (error) {
+    res.status(500).json({ error: '서버 오류가 발생했습니다' });
+  }
+});
+
+router.delete('/nft-collections/:hash', async (req, res) => {
+  try {
+    const { hash } = req.params;
+    const collections = await db.removeNFTCollection(hash);
+    res.json({ success: true, collections });
+  } catch (error) {
+    res.status(500).json({ error: '서버 오류가 발생했습니다' });
   }
 });
 

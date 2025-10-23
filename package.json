@@ -9,12 +9,7 @@
     "dev:backend": "nodemon backend/server.js",
     "build": "vite build",
     "start": "node backend/server.js",
-    "start:dev": "node backend/server.js",
-    "preview": "vite preview",
-    "migrate": "node backend/db/migrate.js",
-    "db:init": "node backend/db/migrate.js",
-    "railway:build": "npm install && npm run build",
-    "railway:start": "npm run migrate && npm start"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@metaplex-foundation/js": "^0.19.4",
