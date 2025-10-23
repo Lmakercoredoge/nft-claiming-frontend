@@ -9,7 +9,8 @@
     "dev:backend": "nodemon backend/server.js",
     "build": "vite build",
     "start": "node backend/server.js",
-    "preview": "vite preview --host 0.0.0.0 --port $PORT"
+    "preview": "vite preview --host 0.0.0.0 --port $PORT",
+    "postinstall": "npm rebuild @rollup/rollup-linux-x64-gnu || true"
   },
   "dependencies": {
     "@metaplex-foundation/js": "^0.19.4",
